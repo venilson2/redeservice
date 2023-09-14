@@ -2,25 +2,29 @@
     ViewData["Title"] = "Ordenação de Número";
 }
 
-<h2>Ordenação de Números</h2>
+<div class="container mt-5">
+    <h2>Ordenação de Números</h2>
 
-<div>
-    <input type="text" id="numeroInput" />
-    <button onclick="adicionarNumero()">Adicionar</button>
+    <div class="mb-3">
+        <input type="text" id="numeroInput" class="form-control" placeholder="Insira um número">
+        <button onclick="adicionarNumero()" class="btn btn-primary mt-2">Adicionar</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Números Ordenados</th>
+            </tr>
+        </thead>
+        <tbody class="bg-light">
+            <tr class="bg-light">
+                <td id="numbersTable"></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<table>
-    <tr>
-        <th>Números Ordenados</th>
-    </tr>
-    <tbody>
-        <tr>
-            <td id="numbersTable"></td>
-        </tr>
-    </tbody>
-</table>
-
-<button onclick="recordNumbers()">Gravar em arquivo</button>
+<button class="btn btn-primary mt-2" onclick="recordNumbers()">Gravar em arquivo</button>
 
 <script>
     var numbers = [];
@@ -31,7 +35,7 @@
 
         toastr.options.closeButton = true;
 
-        if (!isNaN(numero) && /^[0-9]+(\.[0-9]+)?$/.test(numeroInput.value)) {
+        if (!isNaN(numero) && /^[0-9]+$/.test(numeroInput.value)) {
             $(document).ready(function () {
                 toastr.success('Ação realizada com sucesso!', 'Sucesso');
             });
@@ -62,9 +66,26 @@
 
         try {
             a.click();
-            toastr.success('Números gravados com sucesso!', 'Sucesso');
         } catch (error) {
-            toastr.error('Erro ao gravar números.', 'Erro');
+            toastr.error('Erro ao fazer download do arquivo.', 'Erro');
         }
+
+        sendNumbers()
+    }
+
+    function sendNumbers() {
+        var numberOrdering = numbers.sort(function (a, b) { return a - b; });
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/SaveNumbersFile",
+            data: { numbers: numberOrdering },
+            success: function (response) {
+                toastr.success('Arquivo salvo com sucesso!', 'Sucesso');
+            },
+            error: function () {
+                toastr.error('Erro ao salvar arquivo.', 'Erro');
+            }
+        });
     }
 </script>

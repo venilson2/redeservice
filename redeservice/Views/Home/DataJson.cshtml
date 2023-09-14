@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Gerar arquivo JSON";
+}
+
+<div class="container mt-5">
+    <h2>Gerar arquivo JSON</h2>
+
+    <div class="mb-3 flex">
+        <button class="btn btn-primary mt-2" onclick="generateDataJson()">Criar arquivo data.json</button>
+        <button onclick="loadGrid()" class="btn btn-primary mt-2">Carregar Grid</button>
+    </div>
+</div>
+
+
+<script>
+    function generateDataJson() {
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/generateDataJson",
+            success: function (response) {
+                toastr.success('Arquivo JSON gerado com sucesso!', 'Sucesso');
+            },
+            error: function () {
+                toastr.error('Erro ao gerar arquivo JSON.', 'Erro');
+            }
+        });
+    }
+</script>
