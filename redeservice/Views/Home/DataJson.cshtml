@@ -82,8 +82,10 @@
 
         updatePageButtons();
 
+        const totalPage = Math.ceil(data.length / itemsPerPage);
+
         const currentPageElement = document.getElementById("currentPage");
-        currentPageElement.textContent = `${currentPage}`;
+        currentPageElement.textContent = `${currentPage} | ${totalPage}`;
         currentPageElement.classList.add("btn-primary");
     }
 
