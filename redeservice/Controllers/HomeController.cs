@@ -78,6 +78,18 @@ namespace redeservice.Controllers
             }
         }
 
+        public ActionResult GetDataJson()
+        {
+            List<ClsTeste> data = _fileService.getDataJson("data.json", "Files");
+
+            if (data == null || data.Count == 0)
+            {
+                return NotFound("O arquivo JSON não foi encontrado ou está vazio.");
+            }
+
+            return Ok(data);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -9,6 +9,19 @@
         <button class="btn btn-primary mt-2" onclick="generateDataJson()">Criar arquivo data.json</button>
         <button onclick="loadGrid()" class="btn btn-primary mt-2">Carregar Grid</button>
     </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody" class="bg-light">
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -23,6 +36,37 @@
             },
             error: function () {
                 toastr.error('Erro ao gerar arquivo JSON.', 'Erro');
+            }
+        });
+    }
+
+    function loadGrid() {
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/getDataJson",
+            success: function (response) {
+                var tableBody = document.getElementById("tableBody");
+
+                tableBody.innerHTML = '';
+
+                response.forEach(function (item) {
+                    var row = document.createElement("tr");
+                    var idCell = document.createElement("td");
+                    var descriptionCell = document.createElement("td");
+
+
+                    idCell.textContent = item.codigo;
+                    descriptionCell.textContent = item.descricao;
+
+                    row.appendChild(idCell);
+                    row.appendChild(descriptionCell);
+
+                    tableBody.appendChild(row);
+                });
+            },
+            error: function () {
+                toastr.error('Erro ao carregar arquivo JSON.', 'Erro');
             }
         });
     }
