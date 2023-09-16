@@ -31,12 +31,11 @@
 
 <script>
     var numbers = [];
+    toastr.options.closeButton = true;
 
     function adicionarNumero() {
         var numeroInput = document.getElementById("numeroInput");
         var numero = parseFloat(numeroInput.value);
-
-        toastr.options.closeButton = true;
 
         if (!isNaN(numero) && /^[0-9]+$/.test(numeroInput.value)) {
             $(document).ready(function () {
