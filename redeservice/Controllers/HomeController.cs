@@ -37,7 +37,7 @@ namespace redeservice.Controllers
             {
                 string numbersText = string.Join(Environment.NewLine, numbers);
 
-                if (_fileService.SaveFile("numeros_ordenados.txt", "Files", numbersText))
+                if (_fileService.SaveFile("numeros_ordenar.txt", "Files", numbersText))
                 {
                     return Json(new { success = true });
                 }

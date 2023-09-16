@@ -2,29 +2,32 @@
     ViewData["Title"] = "Ordenação de Número";
 }
 
-<div class="container mt-5">
-    <h2>Ordenação de Números</h2>
+<div class="container mt-5 mx-auto bg-white rounded shadow p-4">
+    <h2 class="mb-4">Ordenação de Números</h2>
 
-    <div class="mb-3">
-        <input type="text" id="numeroInput" class="form-control" placeholder="Insira um número">
-        <button onclick="adicionarNumero()" class="btn btn-primary mt-2">Adicionar</button>
+    <div class="input-group mb-3">
+        <input type="text" id="numeroInput" class="form-control shadow-none" placeholder="Insira um número">
+        <div class="input-group-append">
+            <a onclick="adicionarNumero()" class="btn btn-primary">Adicionar</a>
+            <a class="btn btn-success" onclick="recordNumbers()">Gravar em arquivo</a>
+        </div>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Números Ordenados</th>
-            </tr>
-        </thead>
-        <tbody class="bg-light">
-            <tr class="bg-light">
-                <td id="numbersTable"></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Números Ordenados</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="numbersTable"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<button class="btn btn-primary mt-2" onclick="recordNumbers()">Gravar em arquivo</button>
 
 <script>
     var numbers = [];
