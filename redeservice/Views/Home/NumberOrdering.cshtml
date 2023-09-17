@@ -72,11 +72,10 @@
             toastr.error('Erro ao fazer download do arquivo.', 'Erro');
         }
 
-        sendNumbers()
+        sendNumbers(numberOrdering)
     }
 
-    function sendNumbers() {
-        var numberOrdering = numbers.sort(function (a, b) { return a - b; });
+    function sendNumbers(numberOrdering) {
 
         $.ajax({
             type: "POST",

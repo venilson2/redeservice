@@ -6,7 +6,7 @@
     <h2 class="mb-4">Consultar Cep</h2>
 
     <div class="input-group mb-3">
-        <input type="text" id="numeroInput" class="form-control shadow-none" placeholder="Insira um Cep">
+        <input type="text" id="cepInput" class="form-control shadow-none" placeholder="Insira um Cep">
         <div class="input-group-append">
             <a onclick="consultationCEP()" class="btn btn-primary">Consultar</a>
         </div>
@@ -17,31 +17,27 @@
             <tbody>
                 <tr>
                     <th scope="row" style="width: 20%;">Bairro</th>
-                    <td>Jardim Varginha</td>
+                    <td id="bairro"></td>
                 </tr>
                 <tr>
                     <th scope="row" style="width: 20%;">CEP</th>
-                    <td>04857043</td>
+                    <td id="cep"></td>
                 </tr>
                 <tr>
                     <th scope="row" style="width: 20%;">Cidade</th>
-                    <td>São Paulo</td>
+                    <td id="cidade"></td>
                 </tr>
                 <tr>
                     <th scope="row" style="width: 20%;">Complemento</th>
-                    <td></td>
+                    <td id="complemento2"></td>
                 </tr>
                 <tr>
                     <th scope="row" style="width: 20%;">Endereço</th>
-                    <td>Rua Castro Alves</td>
+                    <td id="end"></td>
                 </tr>
                 <tr>
                     <th scope="row" style="width: 20%;">UF</th>
-                    <td>SP</td>
-                </tr>
-                <tr>
-                    <th scope="row" style="width: 20%;">Unidades de Postagem</th>
-                    <td>null</td>
+                    <td id="uf"></td>
                 </tr>
             </tbody>
     </table>
@@ -50,4 +46,34 @@
 
 <script>
     toastr.options.closeButton = true;
+
+    function consultationCEP() {
+        var cepInput = document.getElementById("cepInput");
+        var cep = cepInput.value;
+
+        $.ajax({
+            type: 'POST',
+            url: '/Correios/ConsultaCEP',
+            data: { cep: cep },
+            success: function (response) {
+                console.log(response);
+
+                if (response.error) {
+                    toastr.error(response.error, 'Erro');
+                } else {
+                    $("#bairro").text(response.bairro);
+                    $("#cep").text(response.cep);
+                    $("#cidade").text(response.cidade);
+                    $("#complemento2").text(response.complemento2);
+                    $("#end").text(response.end);
+                    $("#uf").text(response.uf);
+
+                    toastr.success('CEP encontrado com sucesso.', 'Sucesso');
+                }
+            },
+            error: function () {
+                toastr.error('Erro ao consultar CEP', 'Erro');
+            }
+        });
+    }
 </script>

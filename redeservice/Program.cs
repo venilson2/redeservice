@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<ICorreiosService, CorreiosService>();
 
 var app = builder.Build();
 
