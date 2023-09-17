@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Consultar Cep";
+}
+
+<div class="container mt-5 mx-auto bg-white rounded shadow p-4">
+    <h2 class="mb-4">Consultar Cep</h2>
+
+    <div class="input-group mb-3">
+        <input type="text" id="numeroInput" class="form-control shadow-none" placeholder="Insira um Cep">
+        <div class="input-group-append">
+            <a onclick="consultationCEP()" class="btn btn-primary">Consultar</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+    <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row" style="width: 20%;">Bairro</th>
+                    <td>Jardim Varginha</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 20%;">CEP</th>
+                    <td>04857043</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 20%;">Cidade</th>
+                    <td>São Paulo</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 20%;">Complemento</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 20%;">Endereço</th>
+                    <td>Rua Castro Alves</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 20%;">UF</th>
+                    <td>SP</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 20%;">Unidades de Postagem</th>
+                    <td>null</td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+</div>
+
+<script>
+    toastr.options.closeButton = true;
+</script>

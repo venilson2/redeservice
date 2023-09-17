@@ -30,6 +30,11 @@ namespace redeservice.Controllers
             return View();
         }
 
+        public IActionResult FindCep()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SaveNumbersFile(List<int> numbers)
         {
