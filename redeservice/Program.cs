@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<ICorreiosService, CorreiosService>();
 builder.Services.AddScoped<IBankInfoService, BankInfoService>();

@@ -12,7 +12,7 @@ namespace redeservice.Controllers
             _bankInfoService = bankInfoService;
         }
 
-        public async Task<JsonResult> Index()
+        public async Task<JsonResult> GetBankInfo()
         {
             try
             {

@@ -35,6 +35,11 @@ namespace redeservice.Controllers
             return View();
         }
 
+        public IActionResult FindBankInfo()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SaveNumbersFile(List<int> numbers)
         {
