@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Download Imagem base64";
+}
+
+<div class="container mt-5 mx-auto bg-white rounded shadow p-4">
+    <h2 class="mb-4">Download Imagem e mostrar Base64</h2>
+
+    <div class="row mb-3 justify-content-end text-end">
+        <div class="col mb-3">
+            <a class="btn btn-success btn-block" onclick="downloadImageShowBase64()">Baixar imagem e Gravar</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Base64</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="base64">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+
+    function downloadImageShowBase64(){
+        downloadImage();
+        getImageBase64();
+    }
+
+    function downloadImage(){
+        $.ajax({
+            type: "GET",
+            url: "/file/downloadImage",
+            success: function (response) {
+                toastr.success('Download realizada com sucesso!', 'Sucesso');
+            },
+            error: function () {
+                toastr.error('Erro ao fazer download da imagem', 'Erro');
+            }
+        });
+    }
+
+    function getImageBase64() {
+        $.ajax({
+            type: "GET",
+            url: "/file/getImageBase64",
+            success: function (response) {
+                var base64 = document.getElementById("base64");
+                base64.innerHTML = response;
+
+                toastr.success('Bae64 carregada com sucesso!', 'Sucesso');
+            },
+            error: function () {
+                toastr.error('Erro ao carregar base64 da imagem', 'Erro');
+            }
+        });
+    }
+</script>

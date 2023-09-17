@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using redeservice.Models;
-using System.Diagnostics;
 using redeservice.Interfaces;
 using System.Text.Json;
 
@@ -40,6 +39,11 @@ namespace redeservice.Controllers
             return View();
         }
 
+        public IActionResult DownloadImage()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SaveNumbersFile(List<int> numbers)
         {
@@ -61,9 +65,8 @@ namespace redeservice.Controllers
                 return Json(new { success = false, error = ex.Message });
             }
         }
-
-
-        public ActionResult GenerateDataJson()
+        
+        public IActionResult GenerateDataJson()
         {
             List<ClsTeste> clsTestes = new();
 
@@ -88,7 +91,7 @@ namespace redeservice.Controllers
             }
         }
 
-        public ActionResult GetDataJson()
+        public IActionResult GetDataJson()
         {
             List<ClsTeste> data = _fileService.getDataJson("data.json", "Files");
 
@@ -98,12 +101,6 @@ namespace redeservice.Controllers
             }
 
             return Ok(data);
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
