@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<ICorreiosService, CorreiosService>();
+builder.Services.AddScoped<IBankInfoService, BankInfoService>();
 
 var app = builder.Build();
 
