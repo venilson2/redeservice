@@ -29,38 +29,47 @@
 </div>
 
 <script>
-
-    function downloadImageShowBase64(){
-        downloadImage();
-        getImageBase64();
-    }
-
-    function downloadImage(){
-        $.ajax({
-            type: "GET",
-            url: "/file/downloadImage",
-            success: function (response) {
-                toastr.success('Download realizada com sucesso!', 'Sucesso');
-            },
-            error: function () {
-                toastr.error('Erro ao fazer download da imagem', 'Erro');
-            }
+    function downloadImage() {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: "/file/downloadImage",
+                success: function (response) {
+                    toastr.success('Download realizada com sucesso!', 'Sucesso');
+                    resolve();
+                },
+                error: function () {
+                    toastr.error('Erro ao fazer download da imagem', 'Erro');
+                    reject();
+                }
+            });
         });
     }
 
     function getImageBase64() {
-        $.ajax({
-            type: "GET",
-            url: "/file/getImageBase64",
-            success: function (response) {
-                var base64 = document.getElementById("base64");
-                base64.innerHTML = response;
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                type: "GET",
+                url: "/file/getImageBase64",
+                success: function (response) {
+                    var base64 = document.getElementById("base64");
+                    base64.innerHTML = response;
+                    toastr.success('Base64 carregada com sucesso!', 'Sucesso');
+                    resolve();
+                },
+                error: function () {
+                    toastr.error('Erro ao carregar base64 da imagem', 'Erro');
+                    reject();
+                }
+            });
+        });
+    }
 
-                toastr.success('Bae64 carregada com sucesso!', 'Sucesso');
-            },
-            error: function () {
-                toastr.error('Erro ao carregar base64 da imagem', 'Erro');
-            }
+    function downloadImageShowBase64() {
+        Promise.all([downloadImage()]).then(function () {
+            getImageBase64();
+        }).catch(function () {
+            // Tratar erro, se necessário.
         });
     }
 </script>
