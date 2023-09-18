@@ -1,19 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using redeservice.Models;
-using redeservice.Interfaces;
-using System.Text.Json;
 
 namespace redeservice.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IFileService _fileService;
-
-        public HomeController(IFileService fileService)
-        {
-            _fileService = fileService;
-        }
-
         public IActionResult Index()
         {
             return View();
