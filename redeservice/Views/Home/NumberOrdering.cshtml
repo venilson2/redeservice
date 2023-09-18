@@ -79,7 +79,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/Home/SaveNumbersFile",
+            url: "/file/SaveNumbersFile",
             data: { numbers: numberOrdering },
             success: function (response) {
                 toastr.success('Arquivo salvo com sucesso!', 'Sucesso');

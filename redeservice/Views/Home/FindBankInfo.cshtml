@@ -125,7 +125,7 @@
     function loadBankInfo() {
         $.ajax({
             type: "GET",
-            url: "/Bank/GetBankInfo",
+            url: "/bank/getBankInfo",
             success: function (response) {
 
                 if (response.error) return toastr.error(response.error, 'Erro');

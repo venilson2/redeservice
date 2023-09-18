@@ -69,7 +69,7 @@
         Promise.all([downloadImage()]).then(function () {
             getImageBase64();
         }).catch(function () {
-            // Tratar erro, se necessário.
+            toastr.error('Erro ao fazer a requisição', 'Erro');
         });
     }
 </script>

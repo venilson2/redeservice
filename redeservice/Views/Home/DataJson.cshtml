@@ -111,7 +111,7 @@
     function generateDataJson() {
         $.ajax({
             type: "GET",
-            url: "/Home/generateDataJson",
+            url: "/file/generateDataJson",
             success: function (response) {
                 toastr.success('Arquivo JSON gerado com sucesso!', 'Sucesso');
             },
@@ -124,7 +124,7 @@
     function loadGrid() {
         $.ajax({
             type: "GET",
-            url: "/Home/getDataJson",
+            url: "/file/getDataJson",
             success: function (response) {
                 data = response;
                 updateTable();
